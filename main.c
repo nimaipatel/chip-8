@@ -3,6 +3,8 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_video.h>
 #include <stdio.h>
+#include <time.h>
+#include <unistd.h>
 
 #define WINDOW_TITLE "Chip 8 Simulator"
 
@@ -17,6 +19,8 @@
 #define SCALE 10.0f
 #define PIXEL_ON 1
 #define PIXEL_OFF 0
+
+#define FPS 60
 
 int DISPLAY[ROWS * COLS] = {[0] = 1, [10] = 1, [2047]  = 1};
 
@@ -110,6 +114,7 @@ int main(int argc, char **argv)
 		scc(SDL_RenderClear(renderer));
 		display_render(window, renderer, DISPLAY);
 		SDL_RenderPresent(renderer);
+		sleep(1 / FPS);
 	}
 
 	SDL_Quit();
