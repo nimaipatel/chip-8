@@ -38,8 +38,9 @@ int display_set_pixel(int display[ROWS * COLS], int x, int y)
 {
 	x = (x + COLS) % COLS;
 	y = (y + ROWS) % ROWS;
-	display[x + y * COLS] ^= 1;
-	return !display[x + y * COLS];
+	int index = x + y * COLS;
+	display[index] ^= 1;
+	return !display[index];
 }
 
 void display_clear(int display[ROWS * COLS])
@@ -110,7 +111,7 @@ int main(int argc, char **argv)
 			}
 		}
 
-		scc(SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255));
+		scc(SDL_SetRenderDrawColor(renderer, 150, 150, 150, 255));
 		scc(SDL_RenderClear(renderer));
 		display_render(window, renderer, DISPLAY);
 		SDL_RenderPresent(renderer);
